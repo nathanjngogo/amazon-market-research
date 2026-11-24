@@ -1,0 +1,20 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 工作产物
+research-config.yaml
+*_dashboard.json
+*_conclusions.json
+*.xlsx
+产品调研/
+输出/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp

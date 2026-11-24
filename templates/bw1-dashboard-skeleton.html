@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>{{TITLE}} — 亚马逊九站市场调研看板</title>
+<style>
+/* BW1 报纸灰阶主题 — 宪法级样式，勿改 token */
+:root{--bg:#d9d9d9;--paper:#f5f5f5;--card:#fff;--alt:#e8e8e8;--ink:#111;--mid:#616161;--line:#9e9e9e}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important;font-family:"Courier New","SimSun",monospace;image-rendering:pixelated}
+body{background:var(--bg);padding:24px;color:var(--ink)}
+.shell{max-width:960px;margin:0 auto;background:var(--paper);border:5px solid var(--ink);box-shadow:8px 8px 0 var(--line);padding:16px}
+.hd{background:var(--ink);color:var(--paper);padding:14px 16px;margin-bottom:16px;letter-spacing:2px}
+.hd h1{font-size:20px}.hd .sub{font-size:11px;color:var(--line);margin-top:6px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.kpi{background:var(--card);border:3px solid var(--ink);padding:10px;text-align:center}
+.kpi b{font-size:24px;display:block}.kpi span{font-size:10px;color:var(--mid)}
+.kpi:nth-child(2){background:var(--alt)}.kpi:nth-child(4){background:var(--alt)}
+.sec{background:var(--card);border:3px solid var(--ink);margin-bottom:16px}
+.sec h2{background:var(--mid);color:var(--paper);font-size:12px;padding:7px 12px;letter-spacing:2px}
+.sec .bd{padding:12px}
+.flow{display:flex;gap:4px;flex-wrap:wrap}
+.st{flex:1;min-width:90px;background:var(--alt);border:2px solid var(--line);padding:6px;text-align:center;font-size:10px;color:var(--mid)}
+.st.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.bars .row{display:grid;grid-template-columns:104px 1fr 60px;align-items:center;gap:8px;margin:7px 0;font-size:11px}
+.bar{height:16px;background:var(--alt);border:2px solid var(--ink);padding:1px}
+.bar i{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--ink) 0 6px,#3a3a3a 6px 8px)}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:var(--ink);color:var(--paper);padding:6px;border:2px solid var(--mid);text-align:left}
+td{padding:6px;border:2px solid var(--line);background:var(--card)}
+tr:nth-child(even) td{background:var(--alt)}
+.quad td{height:54px}.q1{background:var(--ink)!important;color:var(--paper)}.q2{background:var(--line);color:var(--ink)}
+.cal{background:var(--alt);color:#2b2b2b;font-size:10px;padding:10px 12px;line-height:1.8;border:3px solid var(--ink)}
+.cal::before{content:"【口径声明·宪法层】";color:var(--ink);font-size:11px;display:block;margin-bottom:4px;letter-spacing:1px}
+.blink{animation:bl 1s steps(2) infinite}@keyframes bl{50%{opacity:0}}
+@media print{.blink{animation:none}}
+</style></head>
+<body><div class="shell">
+<div class="hd"><h1>▓▒░ {{CATEGORY}} · {{SITE}}站市场调研 ░▒▓</h1><div class="sub">九站主链 // 财务口径 V3 // 数据源: SORFTIME TOP100 <span class="blink">█</span></div></div>
+
+<!-- KPI：站①②③ 关键数字，4 格 -->
+<div class="kpis">
+<div class="kpi"><b>{{KPI1}}</b><span>{{KPI1_LABEL}}</span></div>
+<div class="kpi"><b>{{KPI2}}</b><span>{{KPI2_LABEL}}</span></div>
+<div class="kpi"><b>{{KPI3}}</b><span>{{KPI3_LABEL}}</span></div>
+<div class="kpi"><b>{{KPI4}}</b><span>{{KPI4_LABEL}}</span></div>
+</div>
+
+<!-- 九站流程条：已过站 class="st on"，未到站 class="st" -->
+<div class="sec"><h2>九站流程推进</h2><div class="bd flow">
+<div class="st on">①锚定地盘</div><div class="st on">②拆解结构</div><div class="st on">③找方向</div><div class="st">④定目标</div><div class="st">⑤锁对手</div><div class="st">⑥找切口</div><div class="st">⑦画蓝图</div><div class="st">⑧算利润</div><div class="st">⑨整合输出</div>
+</div></div>
+
+<!-- 站②–⑨ 数据区：按需复制 .sec 块；条形图/表格/四象限结构见 theme 规范 §2.4 -->
+{{SECTIONS}}
+
+<!-- 口径声明栏：强制输出，宪法第6条 -->
+<div class="cal">比例费基数=含税到手价P ▸ VAT代收转付·不计收入成本 ▸ 可争取费率=100/(1+v)−(佣金+退货+仓储+利润+管理)−广告 ▸ 售价取现行BuyBox中位·禁用峰值价 ▸ 本会话微调：{{SESSION_TWEAKS}}</div>
+</div></body></html>

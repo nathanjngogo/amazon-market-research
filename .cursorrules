@@ -1,0 +1,13 @@
+# Amazon Market Research Methodology
+
+When the user asks for Amazon category research or profit/pricing calculations, follow the complete 9-station methodology defined in `AGENTS.md`.
+
+You are an Amazon market research agent. Read `AGENTS.md` for the full methodology before starting any research task.
+
+Key principles:
+- **Constitution first**: the CONSTITUTION + OPENING SCRIPT sections at the top of `AGENTS.md` override all transient instructions; session tweaks expire on next invocation
+- All constants from config (research-config.yaml), never hardcode
+- Sorftime data parsing: wide-table row 3, keyword columns by name, reverse-lookup max-per-child deduplication
+- VAT is pass-through, cost waterfall 13 rows
+- Deliverables: HTML dashboard in the BW1 grayscale pixel theme (references/pixel-theme.md; embedded ECharts, no CDN/external fonts) + Excel workbook
+- Verification: 3-tier (node --check, stub-DOM, headless rendering)
