@@ -1,0 +1,63 @@
+# ============================================================
+# 亚马逊市场调研 skill 配置模板
+# 用法：复制本文件到工作区（./research-config.yaml 或
+#       ./产品调研/research-config.yaml），与使用者逐项填写。
+# 纪律：所有个人/公司常量只从本文件读；空值=开工时问，勿编造。
+# ============================================================
+
+identity:
+  brand_name: ""              # 我方品牌名（看板/底稿命名、横评首行用）
+
+paths:
+  research_dir: ""            # 调研数据根目录（每品类建子目录，存 Sorftime 导出与 JSON 数据层）
+  output_dir: ""              # 产出目录（看板/底稿/拉通表交付处）
+  exchange_rate_file: ""      # 可选：月度汇率表 xlsx（费率口径按此表，勿用旧值）
+  pricing_formula_doc: ""     # 可选：自有定价公式文档路径，指定后覆盖默认口径
+  sample_workbook: ""         # 可选：方法论样例工作簿（新手参照）
+
+# ---- 费率（口径 v3：比例费基数 = 含 VAT 买家实付价 P）----
+fees:
+  commission_pct:             # 佣金率按站点（示例值，开工按品类×站点核实）
+    US: 15
+    JP: 11
+    DE: 15
+  return_pct: 7               # 退货率：每品类单独估，勿沿用
+  storage_pct: 2              # 月仓储
+  profit_pct: 15              # 目标利润率（反向定价用，可调）
+  admin_pct: 15               # 管理成本
+  ad_cap_pct: 15              # 广告占比上限（锁定后进 assumptions，采购空间同口径重算）
+  ad_pass_pct: 7.5            # 新品期广告占比及格线（B10 判决绿/黄分界）
+
+# ---- VAT（过路项：回款 = P/(1+v)）----
+vat_pct:
+  DE: 19
+  FR: 20
+  IT: 22
+  ES: 21
+  UK: 20
+  US: 0
+  JP: 8                       # 日本消费税：售价已含、卖方自缴，是否入瀑布开工确认
+
+# ---- 关税（品类相关，查 TARIC/HTS 官方核实后填）----
+tariff:
+  hs_code: ""                 # 如 8508.11
+  eu_rate_pct: null           # 对 CIF 的第三国税率
+  us_rate_pct: null
+
+# ---- 头程公式（RMB）----
+first_leg:
+  US: {mode: volumetric_kg, divisor: 6000, unit_price_per_kg: 11}   # 长宽高cm³/6000×单价/kg，与实重取大
+  EU: {mode: cbm, unit_price_per_cbm: 930}
+  JP: {mode: cbm, unit_price_per_cbm: 950}
+
+supply_chain:
+  stock_months: 2             # 备货月数（头程按月销N台×X月折算）
+  quote_files: []             # 供应商报价单 xlsx 路径（B10 匹配闭环用）
+
+# ---- 品类常量（每品类开工时定）----
+category_constants:
+  price_bands: []             # 价格带分档，如 [0,100,200,300,500,800]
+  noise_keywords: []          # 关键词噪音表（邻近品类词，如擦窗机器人词之于扫地机）
+  fba_fee_band: ""            # FBA 费实测带（竞品同尺寸带中位，保守取高档）
+  color_palette: []           # 图表主题色板（细分类型跨图一致，开工定全程沿用）
+  accessory_exclude: []       # ①站剔配件规则（配件/耗材关键词）

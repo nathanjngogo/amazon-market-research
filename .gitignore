@@ -1,11 +1,13 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 .venv/
 venv/
 
 # 工作产物
-research-config.yaml
+# 注意：只忽略使用时复制到工作区的配置，不能误伤 templates/ 里的模板
+/research-config.yaml
+产品调研/research-config.yaml
 *_dashboard.json
 *_conclusions.json
 *.xlsx
